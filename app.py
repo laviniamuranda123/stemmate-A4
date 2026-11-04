@@ -1,10 +1,15 @@
 import sqlite3
-from flask import Flask, jsonify, request
+from pathlib import Path
+
+from flask import Flask, jsonify, request, send_from_directory
+
 from db import get_connection, init_db
 from validation import validate_session
 
 app = Flask(__name__)
 app.config["DB_PATH"] = None
+
+FRONTEND = Path(__file__).parent / "Improved frontend"
 
 init_db()
 
@@ -87,6 +92,16 @@ def save_session():
         return jsonify({"errors": {"server": "Could not save. Please try again."}}), 500
     finally:
         conn.close()
+
+
+@app.route("/")
+def index():
+    return send_from_directory(FRONTEND, "index.html")
+
+
+@app.route("/<path:filename>")
+def frontend_files(filename):
+    return send_from_directory(FRONTEND, filename)
 
 
 if __name__ == "__main__":

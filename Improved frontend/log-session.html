@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log a session | STEMMate Namibia</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    form { display: grid; gap: 14px; max-width: 520px; margin: 16px auto; padding: 0 16px; }
+    label { font-weight: 600; display: block; margin-bottom: 4px; }
+    input, select, textarea { width: 100%; padding: 10px; font-size: 1rem; border: 2px solid #563a29; border-radius: 8px; box-sizing: border-box; }
+    :focus-visible { outline: 3px solid #1a5fb4; outline-offset: 2px; }
+    #msg { max-width: 520px; margin: 0 auto; padding: 0 16px; }
+    .err { color: #9b1c1c; }
+    .ok { color: #14532d; }
+  </style>
+</head>
+<body>
+  <main>
+    <p style="padding:0 16px"><a href="index.html">‹ Back to home</a></p>
+    <h1 style="padding:0 16px">Log a session</h1>
+    <p id="conn" role="status" style="padding:0 16px"></p>
+
+    <form id="sessionForm" novalidate>
+      <div><label for="facilitator">Facilitator</label>
+        <select id="facilitator" required></select></div>
+      <div><label for="date">Session date</label>
+        <input id="date" type="date" required></div>
+      <div><label for="topic">Topic</label>
+        <input id="topic" type="text" maxlength="100" required></div>
+      <div><label for="count">Number of learners</label>
+        <input id="count" type="number" min="0" max="500" inputmode="numeric" required></div>
+      <div><label for="notes">Notes (optional)</label>
+        <textarea id="notes" maxlength="500" rows="3"></textarea></div>
+      <button class="button" type="submit">Save session</button>
+    </form>
+
+    <div id="msg" role="status" aria-live="polite"></div>
+    <p id="pending" style="padding:0 16px"></p>
+  </main>
+  <script src="log-session.js"></script>
+</body>
+</html>
