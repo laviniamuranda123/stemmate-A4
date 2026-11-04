@@ -1,5 +1,13 @@
-const CACHE_NAME = "stemmate-shell-v2";
-const APP_FILES = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.json"];
+const CACHE_NAME = "stemmate-shell-v3";
+const APP_FILES = [
+  "./",
+  "./index.html",
+  "./styles.css",
+  "./app.js",
+  "./manifest.json",
+  "./log-session.html",
+  "./log-session.js"
+];
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_FILES)));
@@ -15,6 +23,10 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
+
+  // API calls always go to the network (never cached), so data is never stale
+  if (new URL(event.request.url).pathname.startsWith("/api/")) return;
+
   event.respondWith((async () => {
     const cached = await caches.match(event.request);
     if (cached) return cached;
