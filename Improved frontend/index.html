@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#563a29">
+  <meta name="description" content="STEMMate Namibia - save learning sessions for offline use.">
+  <title>STEMMate Namibia</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="STEMMate Namibia home">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span><strong>STEMMate</strong><small>N A M I B I A</small></span>
+    </a>
+    <span class="connection" id="connectionStatus" role="status">Checking connection…</span>
+    <button class="profile" aria-label="Profile">♙</button>
+  </header>
+
+  <main>
+    <section id="homeScreen" class="screen">
+      <p class="eyebrow">YOUR LEARNING SPACE</p>
+      <h1>Welcome to STEMMate.</h1>
+      <p class="lead">Here's what's available for your learning session today.</p>
+      <div class="status-pill" id="homeSaveStatus" role="status">✓ Materials ready to explore</div>
+
+      <article class="featured">
+        <span class="tag">TODAY'S SESSION</span>
+        <h2>Build a simple water filter</h2>
+        <p>Guide learners through clean water, filtration and a hands-on team experiment.</p>
+        <div class="meta"><span>◷ &nbsp;45 minutes</span><span>♧ &nbsp;Group activity</span></div>
+        <button class="button button-light" id="openGuide">Open session guide&nbsp; ›</button>
+      </article>
+
+      <section class="saved-preview">
+        <div class="section-heading">
+          <h2>Saved sessions</h2>
+          <button class="text-button" id="viewSaved">View all</button>
+        </div>
+        <p id="savedCount">No sessions saved on this device yet.</p>
+      </section>
+    </section>
+
+    <section id="guideScreen" class="screen hidden">
+      <button class="back-button" id="backHome" aria-label="Back to home">‹</button>
+      <p class="eyebrow">SESSION GUIDE · 45 MIN</p>
+      <h1>Build a simple water filter</h1>
+      <p class="lead">Explore how everyday materials can help make muddy water clearer.</p>
+
+      <article class="steps-card">
+        <h2>Session steps</h2>
+        <div class="step"><span>01</span><div><h3 id="firstSessionStep" tabindex="-1">Explore the challenge <small>8 min</small></h3><p>Ask: How can we make muddy water clearer using everyday materials?</p></div></div>
+        <div class="step"><span>02</span><div><h3>Build the filter <small>25 min</small></h3><p>Layer cloth, gravel and sand in a cut bottle. Pour slowly and observe.</p></div></div>
+        <div class="step"><span>03</span><div><h3>Discuss observations <small>12 min</small></h3><p>Compare the water before and after filtering. Discuss what changed.</p></div></div>
+      </article>
+
+      <div class="save-panel">
+        <p id="saveMessage" role="status" aria-live="polite">Save this guide on your device so you can open it without internet access.</p>
+        <button class="button" id="saveOffline">Save for Offline Use</button>
+        <button class="button button-outline" id="startSession">Start session</button>
+      </div>
+    </section>
+
+    <section id="savedScreen" class="screen hidden">
+      <button class="back-button" id="backFromSaved" aria-label="Back to home">‹</button>
+      <p class="eyebrow">YOUR DEVICE</p>
+      <h1>Saved sessions</h1>
+      <p class="lead">Sessions stored on this device can be opened without an internet connection.</p>
+      <div id="savedList" class="saved-list"></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" id="navHome" aria-current="page"><span aria-hidden="true">⌂</span> <span>Home</span></button>
+    <button class="nav-item" id="navGuide"><span aria-hidden="true">▤</span> <span>Guide</span></button>
+    <button class="nav-item" id="navSaved"><span aria-hidden="true">▣</span> <span>Saved</span></button>
+  </nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

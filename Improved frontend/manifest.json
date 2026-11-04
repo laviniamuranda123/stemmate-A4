@@ -1,0 +1,9 @@
+{
+  "name": "STEMMate Namibia",
+  "short_name": "STEMMate",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ef",
+  "theme_color": "#563a29",
+  "description": "Save learning sessions for offline use."
+}
