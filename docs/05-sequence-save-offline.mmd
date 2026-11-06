@@ -1,0 +1,17 @@
+sequenceDiagram
+  actor F as Facilitator
+  participant App as PWA
+  participant Box as Local outbox
+  participant Srv as Server
+  participant DB as SQLite
+  F->>App: Fill session form (offline)
+  App->>App: Validate locally
+  App->>Box: Save record with UUID, status Queued
+  App-->>F: "Saved on this device. Not yet sent."
+  Note over App,Srv: Connection returns
+  App->>Srv: POST queued records
+  Srv->>Srv: Validate again, check UUID
+  Srv->>DB: Insert in transaction
+  Srv-->>App: Per-record result (accepted / rejected / already received)
+  App->>Box: Update status Synced or Needs attention
+  App-->>F: Show status

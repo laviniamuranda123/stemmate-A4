@@ -1,0 +1,8 @@
+%% Purpose: system boundary. Legend: person = actor, box = system, dashed = optional external. Reqs: R-SAVE, R-PRIV, R-EXPORT
+flowchart LR
+  F([Facilitator]) -->|session record: topic, date, headcount| S[STEMMate Session Recorder]
+  C([Site Coordinator]) -->|accounts, backup, export| S
+  R([Programme Reviewer]) -->|read summary reports| S
+  S -->|status: Saved / Synced / Needs attention| F
+  S -->|CSV/JSON backup file| B[/Removable drive or email - optional/]
+  style B stroke-dasharray: 5 5

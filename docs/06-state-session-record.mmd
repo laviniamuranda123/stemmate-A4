@@ -1,0 +1,8 @@
+stateDiagram-v2
+  [*] --> Draft
+  Draft --> Queued: Save
+  Queued --> Syncing: Connection / Send now
+  Syncing --> Synced: Accepted
+  Syncing --> Failed: Rejected or timeout
+  Failed --> Queued: Retry or edit and fix
+  Synced --> [*]

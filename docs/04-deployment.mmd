@@ -1,0 +1,14 @@
+%% Purpose: where things run. Legend: dotted = intermittent link, solid = local/reliable.
+flowchart LR
+  subgraph Phone[Facilitator device - Android/laptop browser]
+    P1[PWA + service worker]
+    P2[(IndexedDB)]
+  end
+  subgraph Host[Site host - laptop or mini-PC]
+    H1[App server]
+    H2[(SQLite WAL)]
+  end
+  D[(Removable drive - weekly backup)]
+  P1 -. Wi-Fi/hotspot, intermittent .-> H1
+  H1 --> H2
+  H2 --> D

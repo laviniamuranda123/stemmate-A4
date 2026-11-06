@@ -1,0 +1,46 @@
+erDiagram
+  FACILITATOR ||--o{ SESSION : creates
+  SITE ||--o{ SESSION : hosts
+  SESSION ||--o{ SESSION_STEP : has
+  SESSION ||--o{ SESSION_MATERIAL : lists
+  SESSION ||--o{ ATTENDANCE_ENTRY : records
+  SESSION ||--o{ SYNC_LOG : logs
+  FACILITATOR ||--o{ AUDIT_LOG : performs
+  FACILITATOR { int facilitator_id PK
+    string email "fictional"
+    string password_hash
+    string display_name
+    string role
+    bool active }
+  SITE { int site_id PK
+    string site_label }
+  SESSION { string session_id PK "client UUID"
+    int facilitator_id FK
+    int site_id FK
+    date session_date
+    string title
+    string activity_type
+    int duration_min
+    string safety_note
+    string status
+    int version }
+  SESSION_STEP { string session_id FK
+    int step_no
+    string step_title
+    int minutes
+    bool done }
+  SESSION_MATERIAL { string session_id FK
+    string material_name }
+  ATTENDANCE_ENTRY { string session_id FK
+    string learner_label "Learner 01 to 06"
+    bool present }
+  SYNC_LOG { int sync_id PK
+    string session_id FK
+    datetime attempt_at
+    string outcome
+    string reason }
+  AUDIT_LOG { int audit_id PK
+    int actor_id FK
+    string action
+    string entity
+    datetime timestamp }

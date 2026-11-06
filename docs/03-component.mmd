@@ -1,0 +1,12 @@
+%% Purpose: server internals mapped to tests. Legend: arrow = calls.
+flowchart TD
+  AG[AuthGuard] --> SC[SessionController]
+  SC --> V[Validator]
+  SC --> SS[SessionService]
+  SC --> SY[SyncService]
+  SY --> SS
+  SS --> RP[Repository]
+  RP --> DB[(SQLite)]
+  SS --> AL[AuditLogger]
+  SC --> EX[ExportService]
+  EX --> RP

@@ -1,0 +1,14 @@
+%% Purpose: runnable parts. Legend: label = technology, arrows = protocol. Confirm stack with Member 3.
+flowchart LR
+  subgraph Device[Facilitator phone or laptop]
+    PWA[PWA web app\nHTML + minimal JS + service worker]
+    IDB[(IndexedDB outbox\nunsent records and drafts)]
+    PWA <--> IDB
+  end
+  subgraph Host[Site host machine]
+    APP[Application server\nFlask or Express]
+    DB[(SQLite file)]
+    APP --> DB
+  end
+  PWA -. HTTP JSON sync, intermittent .-> APP
+  APP --> EXP[Backup export CSV/JSON]
